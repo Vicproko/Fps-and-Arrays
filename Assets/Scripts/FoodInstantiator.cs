@@ -8,6 +8,8 @@ public class FoodInstantiator : MonoBehaviour
     public Transform clonePoint;
     public float interval;
     public RandomPlacement posicionAlateoriaDeColnePoint;
+    public int maxClones;
+    public int cloneCount;
 
     // Start is called before the first frame update
     void Start()
@@ -23,8 +25,12 @@ public class FoodInstantiator : MonoBehaviour
 
     void CloneFood()
     {
-        posicionAlateoriaDeColnePoint.SetRandomPosition();
-        GameObject prefab = alimentos[Random.Range(0,alimentos.Length)];
-        Instantiate(prefab, clonePoint.position, clonePoint.rotation);
+        if (cloneCount < maxClones)
+        {
+            cloneCount++;
+            posicionAlateoriaDeColnePoint.SetRandomPosition();
+            GameObject prefab = alimentos[Random.Range(0, alimentos.Length)];
+            Instantiate(prefab, clonePoint.position, clonePoint.rotation);
+        }        
     }
 }
